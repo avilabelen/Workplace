@@ -1,6 +1,6 @@
 #include <iostream>
 #include <map>
-
+#include <string>
 void displayInventory(const std::map<std::string, int>& inventory) {
     std::cout << "Current Inventory:\n";
     for (const auto& item : inventory) {
@@ -8,6 +8,7 @@ void displayInventory(const std::map<std::string, int>& inventory) {
     }
     std::cout << std::endl;
 }
+void addnewproduct(map<string,int>&inventory)
 
 int main() {
     std::map<std::string, int> inventory;
