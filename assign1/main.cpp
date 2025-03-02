@@ -27,9 +27,9 @@
   * Hint: Remember what types C++ streams work with?!
   */
  struct Course {
-   string title;
-   string number_of_units;
-   string quarter;
+   std::string title;
+   std::string number_of_units;
+   std::string quarter;
  };
  
  /**
@@ -66,34 +66,23 @@
    ifstream f(filename);
  
    if (!f.is_open()) {
-     cerr << "Error opening the file!";
-     return;
-   }
+     cerr << "Something does not working ";
+     return; }
  
    string line;
  
-   // Skip the header of the csv file
-   getline(f, line); 
+   getline(f, line); //skip the header of courses.csv
  
-   while (getline(f, line)){
+   while (getline(f, line)){ //read each line of f and save it in line
      Course course;
-     stringstream tokenizer(line);
+     stringstream tokenizer(line); //create a streamstring to divide a string with delimitators
      
-     // Personal Finance for Engineers,1,2023-2024 Autumn tokenizer []
-     // 1,2023-2024 Autumn
-
-     // Personal Finance for Engineers
-     // 1
-     // 2023-2024 Autumn
- 
-     // [[title0,numberOfUnits0,quarter0],[title1,numberOfUnits1,quarter1],[title2,numberOfUnits2,quarter2],...]
-     // [["Personal Finance for Engineers",1,"2023-2024 Autumn"], ... ]
- 
+     //divide de strings and save each line in each the struct
      getline(tokenizer, course.title, ',');
      getline(tokenizer, course.number_of_units, ',');
      getline(tokenizer, course.quarter);
      
-     courses.push_back(course); 
+     courses.push_back(course); //add the object to the vector courses
    }
  
    f.close();
@@ -119,29 +108,29 @@
   */
  void write_courses_offered(std::vector<Course>& all_courses) {
    /* (STUDENT TODO) Your code goes here... */
-   ofstream f("./student_output/courses_offered.csv");
+   ofstream f("./student_output/courses_offered.csv");//open or create the file courses_offered.csv
  
    if (!f.is_open()) {
-     cout << "Error opening the file!";
+     cout << "Something is not working";//verify if the file opened correctly
      return;
    }
  
-   f << "Title" << "," << "Number of Units" << "," << "Quarter" << endl;
+   f << "Title" << "," << "Number of Units" << "," << "Quarter" << endl;//it is the head od the file with the colums names
  
    vector<Course> courses_to_delete;
    
    for(const Course& course : all_courses){
-     if(course.quarter == "null") continue;
+     if(course.quarter == "null") continue;//skip the courses are not offered
  
-     f << course.title << "," << course.number_of_units << "," << course.quarter << endl;
+     f << course.title << "," << course.number_of_units << "," << course.quarter << endl;//writte the datos in the file 
  
-     courses_to_delete.push_back(course);
+     courses_to_delete.push_back(course);//add the course that fullfill this to delete after from the original vector
    }
  
    f.close();
  
    for(const Course& course : courses_to_delete){
-     delete_elem_from_vector(all_courses, course);
+     delete_elem_from_vector(all_courses, course);//delete the offered courses from the vector all_courses
    }
  }
  
@@ -159,17 +148,17 @@
   * @param unlisted_courses A vector of courses that are not offered.
   */
  void write_courses_not_offered(const std::vector<Course>& unlisted_courses) {
-   ofstream f("./student_output/courses_not_offered.csv");
+   ofstream f("./student_output/courses_not_offered.csv");//open or create the file 
  
    if (!f.is_open()) {
-     cout << "Error opening the file!";
+     cout << "Something is not working";//virify if the file opened correctly
      return;
    }
  
-   f << "Title" << "," << "Number of Units" << "," << "Quarter" << endl;
+   f << "Title" << "," << "Number of Units" << "," << "Quarter" << endl; //write the head of the file 
  
    for(const Course& course : unlisted_courses){
-     f << course.title << "," << course.number_of_units << "," << course.quarter << endl;
+     f << course.title << "," << course.number_of_units << "," << course.quarter << endl; //iterate over the courses not offered and write them in the file 
    }
  
    f.close();
