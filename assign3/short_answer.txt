@@ -1,11 +1,16 @@
-Before submitting this file, make sure that there are no more TODO
-placeholders remaining in the file (and remove this comment too).
-
 Make a Class
 ------------
 
 Q1. What’s const-correctness and why is it important?
-A1. TODO
+A1. s a programming practice where you use the const keyword to declare 
+variables, pointers, and function parameters as constant — meaning their
+value or the object they point to cannot be modified. It is important because
+prevents accidental modification, works with pointers to prevent unsafe modifications,
+supports safer interfaces and improves code readability.
 
 Q2. Is your class const-correct? How do you know?
-A2. TODO
+A2. To determine if a class is const-correct, check how the const keyword is used: 
+functions that don't modify the object's data should be marked as const, 
+parameters and return types should use const to avoid unnecessary copies 
+or accidental modifications, and pointers/references should be used with const to prevent
+ modifying the pointed-to data or the pointer itself when not needed.
