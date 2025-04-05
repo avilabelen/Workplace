@@ -18,7 +18,28 @@ public:
   /** 
    * STUDENT TODO:
    * Your custom operators and special member functions will go here!
-   */
+   */// Destructor
+  ~User();
+
+  // Constructor de copia
+  User(const User& other);
+
+  // Operador de asignación por copia
+  User& operator=(const User& other);
+
+  // Eliminar constructor de movimiento y operador de asignación por movimiento
+  User(User&&) = delete;
+  User& operator=(User&&) = delete;
+
+  // Operador += (para agregar amigos mutuamente)
+  User& operator+=(User& other);
+
+  // Operador < (para ordenar por nombre)
+  bool operator<(const User& other) const;
+
+  // Operador << (como función amiga)
+  friend std::ostream& operator<<(std::ostream& os, const User& user);
+
 
 private:
   std::string _name;
